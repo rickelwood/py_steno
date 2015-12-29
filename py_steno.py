@@ -39,6 +39,7 @@ def encode(msg, image):
     for row in range(image.height):
         for col in range(image.width):
             pix = list(image.getpixel((col, row)))
+            print(pix)
             for i in range(0, 3):
                 if bit_count == 8:
                     bit_count = 0
@@ -67,6 +68,7 @@ def decode(image):
     for row in range(image.height):
         for col in range(image.width):
             pix = list(image.getpixel((col, row)))
+            print(pix)
             for i in range(0, 3):
                 bit = pix[i] & 0b00000001
                 if bytes == 7:
@@ -88,7 +90,7 @@ new_img = old_img.copy()
 old_img.close()
 
 # encode secret msg into LSB, decode and recover the message
-msg = "This is a Secret Message"
+msg = 'This is a secret message.'
 new_image = encode(msg, new_img)
 new_img.save('sloth_new.PNG')
 dec_msg = decode(new_image)
